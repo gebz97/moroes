@@ -17,8 +17,9 @@ def get_bool_env(key: str, default: bool = False) -> bool:
   return val.strip().lower() in ['1', 'true', 'yes']
 
 class Config:
-  VAULT_ADDR        = get_env('VAULT_ADDR')
-  VAULT_ROLE_ID     = get_env('VAULT_ROLE_ID')
-  VAULT_SECRET_ID   = get_env('VAULT_SECRET_ID')
-  DB_VAULT_PATH     = get_env('DB_VAULT_PATH', 'secret/data/db/crm')
+  VAULT_ADDR = get_env('VAULT_ADDR')
+  VAULT_TOKEN = get_env("VAULT_TOKEN")
+  #VAULT_ROLE_ID     = get_env('VAULT_ROLE_ID')
+  #VAULT_SECRET_ID   = get_env('VAULT_SECRET_ID')
+  DB_VAULT_PATH = get_env('DB_VAULT_PATH', 'secret/data/db/crm')
   VAULT_SKIP_VERIFY = get_bool_env('VAULT_SKIP_VERIFY', False)

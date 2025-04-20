@@ -2,18 +2,17 @@ import hvac
 from config import Config
 import os
 
-def init_vault_client() -> hvac.Client:
+def init_vault_client():
     client = hvac.Client(
         url=Config.VAULT_ADDR,
+        token=Config.VAULT_TOKEN,
         verify=not Config.VAULT_SKIP_VERIFY
-    )    
-    client.auth.approle.login(
-      role_id=Config.VAULT_ROLE_ID,
-      secret_id=Config.VAULT_SECRET_ID
     )
+
     if not client.is_authenticated():
-      raise RuntimeError('Vault authentication failed')
+        raise RuntimeError("Vault token authentication failed.")
     return client
+
 
 def get_secret(
       client: hvac.Client,
